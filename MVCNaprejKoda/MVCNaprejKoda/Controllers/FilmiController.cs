@@ -123,5 +123,15 @@ namespace MVCNaprejKoda.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Isci(string niz) {
+            var filmi=from a in db.Filmis
+                      select a;
+            if (!String.IsNullOrEmpty(niz)) {
+                filmi = from a in filmi
+                        where a.Naslov.Contains(niz)
+                        select a;
+            }
+            return View(filmi);
+        }
     }
 }
